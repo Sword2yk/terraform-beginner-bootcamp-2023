@@ -263,3 +263,6 @@ Provide the following code (replace your token in the file):
   }
 }
 ``````
+
+### Automation for Terraform Tfrc
+This workaround with the following bash script [bin/generate_tfrc_credentials](bin/generate_tfrc_credentials)
