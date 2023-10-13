@@ -12,13 +12,13 @@ It is the primary way to install ruby packages (known as gems) for ruby.
 You need to create a Gemfile and define your gems in that file.
 
 ```rb
-    source "https://rubygems.org"
+source "https://rubygems.org"
 
-    gem 'sinatra'
-    gem 'rake'
-    gem 'pry'
-    gem 'puma'
-    gem 'activerecord'
+gem 'sinatra'
+gem 'rake'
+gem 'pry'
+gem 'puma'
+gem 'activerecord'
 ```
 
 Then you need to run the `bundle install` command
@@ -48,8 +48,16 @@ https://sinatrarb.com/
 We can run the web server by executing the following commands:
 
 ```rb
-    bundle install
-    bundle exec ruby server.rb
+bundle install
+bundle exec ruby server.rb
 ```
 
 All of the code for our server is stored in the `server.rb` file.
+
+## CRUD
+
+Terraform Provider resources utilize CRUD.
+
+CRUD stands for Create, Read Update, and Delete
+
+https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
