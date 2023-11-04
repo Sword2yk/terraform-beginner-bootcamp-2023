@@ -13,12 +13,12 @@ terraform {
   #    name = "terra-house-1"
   #  }
   #}
-  #cloud {
-  #  organization = "ExamPro"
-  #  workspaces {
-  #    name = "terra-house-1"
-  #  }
-  #}
+  cloud {
+    organization = "TerraBootCamp"
+    workspaces {
+      name = "terra-house-1"
+    }
+  }
 
 }
 
@@ -28,14 +28,11 @@ provider "terratowns" {
   token = var.terratowns_access_token
 }
 
-module "terrahouse_aws" {
-  source = "./modules/terrahouse_aws"
+module "home_arcanum_hosting" {
+  source = "./modules/terrahome_aws"
   user_uuid = var.teacherseat_user_uuid
-  bucket_name = var.bucket_name
-  index_html_filepath = var.index_html_filepath
-  error_html_filepath = var.error_html_filepath
-  content_version = var.content_version
-  assets_path = var.assets_path
+  content_version = var.arcanum.content_version
+  public_path = var.arcanum.public_path
 }
 
 resource "terratowns_home" "home" {
@@ -43,8 +40,25 @@ resource "terratowns_home" "home" {
   description = <<DESCRIPTION
 Blue sky is a building cast for gamers.
 DESCRIPTION
-  domain_name = module.terrahouse_aws.cloudfront_url
-  #domain_name = "3fdq3gz.cloudfront.net"
+  domain_name = module.home_arcanum_hosting.domain_name
   town = "missingo"
-  content_version = 1
+  content_version = var.arcanum.content_version
+}
+
+module "home_payday_hosting" {
+  source = "./modules/terrahome_aws"
+  user_uuid = var.teacherseat_user_uuid
+  content_version = var.payday.content_version
+  public_path = var.payday.public_path
+}
+
+resource "terratowns_home" "home_payday" {
+  name = "Make my day Payday!"
+  description = <<DESCRIPTION
+Payday is a cooperative first-person shooter video game developed by Overkill Software and published by 505 Games. 
+The game is a sequel to 2011's Payday: The Heist. It was released in August 2013 for Windows, PlayStation 3 and Xbox 360. 
+DESCRIPTION
+  domain_name = module.home_payday_hosting.domain_name
+  town = "missingo"
+  content_version = var.payday.content_version
 }
